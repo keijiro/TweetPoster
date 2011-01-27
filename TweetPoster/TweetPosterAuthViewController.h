@@ -1,8 +1,9 @@
 #import <UIKit/UIKit.h>
 #import "OAuthConsumer.h"
 
-@interface TweetPosterAuthViewController : UIViewController <UIWebViewDelegate> {
+@interface TweetPosterAuthViewController : UIViewController <UIWebViewDelegate, UIAlertViewDelegate> {
     OAAsynchronousDataFetcher *fetcher_;
+    BOOL cancelled_;
 }
 
 @property (nonatomic, retain) OAAsynchronousDataFetcher *fetcher;

@@ -119,11 +119,11 @@
 			children = (
 				0F94ECA512F03E5A00CC4199 /* TweetPosterAuthViewController.h */,
 				0F94ECA612F03E5A00CC4199 /* TweetPosterAuthViewController.m */,
+				0F1AFBE012F0FFB50062F36E /* TweetPosterAuthViewController.xib */,
 				0F94ECB612F041F200CC4199 /* TweetPosterOAuth.h */,
 				0F94ECB712F041F200CC4199 /* TweetPosterOAuth.m */,
 				0F345EBC12F0207800F7181F /* TweetPosterViewController.h */,
 				0F345EBD12F0207800F7181F /* TweetPosterViewController.m */,
-				0F1AFBE012F0FFB50062F36E /* TweetPosterAuthViewController.xib */,
 				0F1AFBE112F0FFB50062F36E /* TweetPosterViewController.xib */,
 			);
 			name = TweetPoster;
