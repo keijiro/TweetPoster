@@ -21,7 +21,7 @@
 }
 
 - (IBAction)tweet {
-    self.tweetViewController = [[TweetPosterViewController alloc] initWithNibName:@"TweetViewController" bundle:nil];
+    self.tweetViewController = [[TweetPosterViewController alloc] initWithNibName:@"TweetPosterViewController" bundle:nil];
     [self presentModalViewController:self.tweetViewController animated:YES];
 }
 

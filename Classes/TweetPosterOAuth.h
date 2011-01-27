@@ -7,7 +7,7 @@
     OAToken* accessToken_;
 }
 
-@property (nonatomic, retain) OAConsumer *consumer;
+@property (nonatomic, readonly) OAConsumer *consumer;
 @property (nonatomic, retain) OAToken* requestToken;
 @property (nonatomic, retain) OAToken* accessToken;
 

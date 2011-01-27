@@ -13,15 +13,15 @@ static TweetPosterOAuth *s_sharedInstance;
 
 @implementation TweetPosterOAuth;
 
-@synthesize consumer = _consumer;
-@synthesize requestToken = _requestToken;
-@synthesize accessToken = _accessToken;
+@synthesize consumer = consumer_;
+@synthesize requestToken = requestToken_;
+@synthesize accessToken = accessToken_;
 
 #pragma mark Property Accessors
 
 - (void)setAccessToken:(OAToken *)token {
-    [_accessToken release];
-    _accessToken = token;
+    [accessToken_ release];
+    accessToken_ = [token retain];
     // アクセストークンの保存（あるいは破棄）。
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (token) {
@@ -42,10 +42,10 @@ static TweetPosterOAuth *s_sharedInstance;
         NSString *accessKey = [defaults stringForKey:kAccessKeyStore];
         NSString *accessSecret = [defaults stringForKey:kAccessSecretStore];
         if (accessKey && accessSecret) {
-            self.accessToken = [[[OAToken alloc] initWithKey:accessKey secret:accessSecret] autorelease];
+            accessToken_ = [[OAToken alloc] initWithKey:accessKey secret:accessSecret];
         }
         // コンシューマーの初期化。
-        self.consumer = [[[OAConsumer alloc] initWithKey:kConsumerKey secret:kConsumerSecret] autorelease];
+        consumer_ = [[OAConsumer alloc] initWithKey:kConsumerKey secret:kConsumerSecret];
     }
     return self;
 }
