@@ -1,19 +1,17 @@
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "OAuthConsumer.h"
 
-@interface TweetViewController : UIViewController <UIWebViewDelegate> {
+@interface TweetPosterOAuth : NSObject {
     OAConsumer* consumer_;
     OAToken* requestToken_;
     OAToken* accessToken_;
-    UIWebView *webView_;
-    UITextView *textView_;
 }
 
 @property (nonatomic, retain) OAConsumer *consumer;
 @property (nonatomic, retain) OAToken* requestToken;
 @property (nonatomic, retain) OAToken* accessToken;
 
-@property (nonatomic, retain) IBOutlet UIWebView *webView;
-@property (nonatomic, retain) IBOutlet UITextView *textView;
++ (TweetPosterOAuth *)sharedInstance;
++ (void)disposeSharedInstance;
 
 @end

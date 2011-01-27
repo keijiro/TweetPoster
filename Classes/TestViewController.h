@@ -1,11 +1,11 @@
 #import <UIKit/UIKit.h>
-#import "TweetViewController.h"
+#import "TweetPosterViewController.h"
 
 @interface TestViewController : UIViewController {
-    TweetViewController *tweetViewController_;
+    TweetPosterViewController *tweetViewController_;
 }
 
-@property (nonatomic, retain) TweetViewController *tweetViewController;
+@property (nonatomic, retain) TweetPosterViewController *tweetViewController;
 
 - (IBAction)tweet;
 
