@@ -72,6 +72,7 @@
                                                otherButtonTitles:nil] autorelease];
         [alert show];
     }
+    self.fetcher = nil;
 }
 
 #pragma mark UIWebViewDelegate

@@ -21,7 +21,8 @@
 }
 
 - (IBAction)tweet {
-    self.tweetViewController = [[TweetPosterViewController alloc] initWithNibName:@"TweetPosterViewController" bundle:nil];
+    NSString *postText = [NSString stringWithFormat:@"I just got %d points! This game is really fun! http://goo.gl/U98s #example", arc4random() % 100000];
+    self.tweetViewController = [[[TweetPosterViewController alloc] initWithPostText:postText] autorelease];
     [self presentModalViewController:self.tweetViewController animated:YES];
 }
 

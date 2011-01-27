@@ -1,10 +1,20 @@
+//
+// メインの投稿画面を制御するビューコントローラー。
+//
+
+#import <QuartzCore/QuartzCore.h>
 #import "TweetPosterViewController.h"
 #import "TweetPosterOAuth.h"
 #import "TweetPosterAuthViewController.h"
-#import <QuartzCore/QuartzCore.h>
+
+@interface TweetPosterViewController ()
+- (void)setLoginState:(BOOL)flag;
+- (void)verifyAccount;
+@end
 
 @implementation TweetPosterViewController
 
+@synthesize fetcher = fetcher_;
 @synthesize textView;
 @synthesize textCount;
 @synthesize postButton;
@@ -12,111 +22,138 @@
 @synthesize statusLabel;
 @synthesize activityView;
 
+#pragma mark UIView
+
+- (id)initWithPostText:(NSString *)postText {
+    if (self = [super initWithNibName:@"TweetPosterViewController" bundle:nil]) {
+        cancelled_ = NO;
+	    initialPostText_ = [postText copy];
+    }
+    return self;
+}
+
+- (void)dealloc {
+    [initialPostText_ release];
+    [fetcher_ release];
+    [super dealloc];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // テキストビューの角を丸める。
     self.textView.layer.cornerRadius = 5;
     self.textView.clipsToBounds = YES;
-    // テキスト内容の初期設定。
-    self.textView.text = [NSString stringWithFormat:@"I just got %d points! This game is really fun! http://goo.gl/U98s #example", rand() % 100000];
+    // 初期文字列の設定。
+    self.textView.text = initialPostText_;
     [self textViewDidChange:self.textView];
 }
 
-- (void)verifyAccount {
-    TweetPosterOAuth *auth = [TweetPosterOAuth sharedInstance];
+- (void)viewWillAppear:(BOOL)animated {
+    // アクセストークンの有無によりログイン状態を判別する。
+    [self setLoginState:([TweetPosterOAuth sharedInstance].accessToken != nil)];
+    // キーボードを出す。
+    [self.textView becomeFirstResponder];
+}
 
+#pragma mark Private
+
+- (void)setLoginState:(BOOL)flag {
+    if (flag) {
+        // ログインしているっぽい：アカウントの確認へ移行。
+        [self verifyAccount];
+    } else {
+        // ログインしていない：UIをログアウト状態に変更。
+        [self.loginButton setTitle:@"Login" forState:UIControlStateNormal];
+        self.statusLabel.text = nil;
+        self.postButton.enabled = NO;
+        self.loginButton.enabled = YES;
+        self.activityView.hidden = YES;
+    }
+}
+
+- (void)verifyAccount {
+    // アカウント（アクセストークン）の確認を非同期に発行する。
+    TweetPosterOAuth *auth = [TweetPosterOAuth sharedInstance];
     NSURL *url = [NSURL URLWithString:@"http://api.twitter.com/1/account/verify_credentials.xml"];
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
                                                                    consumer:auth.consumer
                                                                       token:auth.accessToken
                                                                       realm:nil
                                         				  signatureProvider:nil];
-    
-    OAAsynchronousDataFetcher *fetcher = [OAAsynchronousDataFetcher asynchronousFetcherWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(didFinishWithData:data:)
-                  didFailSelector:@selector(didFailWithError:error:)];
-    [fetcher start];
-    [fetcher retain];
-    
+    self.fetcher = [OAAsynchronousDataFetcher asynchronousFetcherWithRequest:request
+                                                                    delegate:self
+                                                           didFinishSelector:@selector(didFinishVerifyAccount:data:)
+                                                             didFailSelector:@selector(didFailVerifyAccount:error:)];
+    [self.fetcher start];
+    // UIを接続中状態に変更。
     self.statusLabel.text = @"Connecting...";
     self.loginButton.enabled = NO;
     self.activityView.hidden = NO;
 }
 
-- (void)didFinishWithData:(OAServiceTicket*)ticket data:(NSData*)data {
+#pragma mark OAuth Callback
+
+- (void)didFinishVerifyAccount:(OAServiceTicket*)ticket data:(NSData*)data {
+    // フェッチャーはこの時点で不要になる。
+    self.fetcher = nil;
+    // データから名前部分を抽出。
     NSString *string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-    NSRange begin = [string rangeOfString:@"<screen_name>"];
-    NSRange end = [string rangeOfString:@"</screen_name>"];
-    if (begin.location != NSNotFound && end.location != NSNotFound) {
-        NSString *name = [string substringWithRange:NSMakeRange(begin.location + begin.length, end.location - begin.location - begin.length)];
-        self.statusLabel.text = [@"@" stringByAppendingString:name];
-        //name;
-        self.postButton.enabled = YES;
+    NSUInteger begin = NSMaxRange([string rangeOfString:@"<screen_name>"]);
+    NSUInteger end = [string rangeOfString:@"</screen_name>"].location;
+    if (begin != NSNotFound && end != NSNotFound) {
+        NSString *name = [string substringWithRange:NSMakeRange(begin, end - begin)];
+        // UIをログイン状態に変更。
         [self.loginButton setTitle:@"Logout" forState:UIControlStateNormal];
+      	self.statusLabel.text = [@"@" stringByAppendingString:name];
+        self.postButton.enabled = YES;
         self.loginButton.enabled = YES;
         self.activityView.hidden = YES;
-    }
-}
-
-- (void)didFailWithError:(OAServiceTicket*)ticket error:(NSError*)error {
-    NSLog(@"err - %@", error);
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    // アクセストークンの有無によりUIの状態を変更する。
-    if ([TweetPosterOAuth sharedInstance].accessToken) {
-        [self verifyAccount];
     } else {
-        self.statusLabel.text = nil;
-        self.postButton.enabled = NO;
-        [self.loginButton setTitle:@"Login" forState:UIControlStateNormal];
-        self.loginButton.enabled = YES;
-        self.activityView.hidden = YES;
+        // 名前取得失敗：静かにログアウト状態へ移行する。
+        [self setLoginState:NO];
     }
-    [self.textView becomeFirstResponder];
 }
 
-- (void)dealloc {
-    [super dealloc];
+- (void)didFailVerifyAccount:(OAServiceTicket*)ticket error:(NSError*)error {
+    // キャンセル挙動中でなければ、静かにログアウト状態へ移行する。
+    if (!cancelled_) {
+        NSLog(@"didFailVerifyAccount - %@", error);
+        [self setLoginState:NO];
+    }
+    self.fetcher = nil;
 }
 
-/*
-- (void)postSomething {
-    NSURL *url = [NSURL URLWithString:@"http://api.twitter.com/1/statuses/update.json"];
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
-                                                                   consumer:consumer
-                                                                      token:accessToken
-                                                                      realm:nil
-                                        				  signatureProvider:nil];
-    
-    [request setHTTPMethod:@"POST"];
-    
-    OARequestParameter *statusParam = [[OARequestParameter alloc] initWithName:@"status" value:@"Hey! OAuth."];
-    NSArray *params = [NSArray arrayWithObjects:statusParam, nil];
-    [request setParameters:params];
-    
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(didFinishWithData:data:)
-                  didFailSelector:@selector(didFailWithError:error:)];
-}
-*/
-
-/*
-- (void)didFinishWithData:(OAServiceTicket*)ticket data:(NSData*)data {
-    NSLog(@"res - %@", data);
+- (void)didFinishPostTweet:(OAServiceTicket*)ticket data:(NSData*)data {
+    // フェッチャーはこの時点で不要になる。
+    self.fetcher = nil;
+    // UIをツイート完了状態に変更。
+    self.statusLabel.text = @"Done!";
+    self.activityView.hidden = YES;
+    // １．５秒後にクローズ（キャンセルで代用）。
+    [NSTimer scheduledTimerWithTimeInterval:1.5f target:self selector:@selector(cancel) userInfo:nil repeats:NO];
 }
 
-- (void)didFailWithError:(OAServiceTicket*)ticket error:(NSError*)error {
-    NSLog(@"err - %@", error);
+- (void)didFailPostTweet:(OAServiceTicket*)ticket error:(NSError*)error {
+    // キャンセル挙動中でなければエラーの表示を行う。
+    if (!cancelled_) {
+        NSLog(@"didFailPostTweet - %@", error);
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Network Error"
+                                                         message:@"A network error occurred while communicating with the server."
+                                                        delegate:nil
+                                               cancelButtonTitle:@"Ok"
+                                               otherButtonTitles:nil] autorelease];
+        [alert show];
+        // ログアウト状態へ移行する。
+        [self setLoginState:NO];
+    }
+    self.fetcher = nil;
 }
-*/
+
+#pragma mark IBAction
 
 - (IBAction)postTweet {
+    // ツイートのポストを非同期に発行する。
     TweetPosterOAuth *auth = [TweetPosterOAuth sharedInstance];
-    
     NSURL *url = [NSURL URLWithString:@"http://api.twitter.com/1/statuses/update.xml"];
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
                                                                    consumer:auth.consumer
@@ -127,28 +164,20 @@
     OARequestParameter *param = [[OARequestParameter alloc] initWithName:@"status"
                                                                    value:self.textView.text];
     [request setParameters:[NSArray arrayWithObject:param]];
-
-    OAAsynchronousDataFetcher *fetcher = [OAAsynchronousDataFetcher asynchronousFetcherWithRequest:request
-                                                                                          delegate:self
-                                                                                 didFinishSelector:@selector(didFinishPostWithData:data:)
-                                                                                   didFailSelector:@selector(didFailWithError:error:)];
-    [fetcher start];
-    [fetcher retain];
-    
+    self.fetcher = [OAAsynchronousDataFetcher asynchronousFetcherWithRequest:request
+                                                                    delegate:self
+                                                           didFinishSelector:@selector(didFinishPostTweet:data:)
+                                                             didFailSelector:@selector(didFailPostTweet:error:)];
+    [self.fetcher start];
+    // UIをポスト中状態に変更。
     self.statusLabel.text = @"Sending...";
     self.loginButton.enabled = NO;
     self.activityView.hidden = NO;
     self.postButton.enabled = NO;
 }
 
-- (void)didFinishPostWithData:(OAServiceTicket*)ticket data:(NSData*)data {
-    self.statusLabel.text = @"Done!";
-    self.activityView.hidden = YES;
-    // １．５秒後にクローズ（キャンセルで代用）。
-    [NSTimer scheduledTimerWithTimeInterval:1.5f target:self selector:@selector(cancel) userInfo:nil repeats:NO];
-}
-
 - (IBAction)cancel {
+    cancelled_ = YES;
 	[self dismissModalViewControllerAnimated:YES];
 }
 
@@ -156,7 +185,7 @@
     if ([TweetPosterOAuth sharedInstance].accessToken) {
         // アクセストークンが有る：ログアウト。
         [TweetPosterOAuth sharedInstance].accessToken = nil;
-        [self viewWillAppear:NO];
+        [self setLoginState:NO];
     } else {
         // アクセストークンが無い：認証画面へ移行。
         TweetPosterAuthViewController *authViewController = [[[TweetPosterAuthViewController alloc] init] autorelease];
