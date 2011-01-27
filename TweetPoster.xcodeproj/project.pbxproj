@@ -37,10 +37,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0F1AFBDE12F0FFB50062F36E /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resouces/MainWindow.xib; sourceTree = "<group>"; };
-		0F1AFBDF12F0FFB50062F36E /* TestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TestViewController.xib; path = Resouces/TestViewController.xib; sourceTree = "<group>"; };
-		0F1AFBE012F0FFB50062F36E /* TweetPosterAuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TweetPosterAuthViewController.xib; path = Resouces/TweetPosterAuthViewController.xib; sourceTree = "<group>"; };
-		0F1AFBE112F0FFB50062F36E /* TweetPosterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TweetPosterViewController.xib; path = Resouces/TweetPosterViewController.xib; sourceTree = "<group>"; };
+		0F1AFBDE12F0FFB50062F36E /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		0F1AFBDF12F0FFB50062F36E /* TestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TestViewController.xib; path = Classes/TestViewController.xib; sourceTree = "<group>"; };
+		0F1AFBE012F0FFB50062F36E /* TweetPosterAuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TweetPosterAuthViewController.xib; path = TweetPoster/TweetPosterAuthViewController.xib; sourceTree = "<group>"; };
+		0F1AFBE112F0FFB50062F36E /* TweetPosterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TweetPosterViewController.xib; path = TweetPoster/TweetPosterViewController.xib; sourceTree = "<group>"; };
 		0F345D1712EFEA4C00F7181F /* Base64Transcoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Base64Transcoder.c; sourceTree = "<group>"; };
 		0F345D1812EFEA4C00F7181F /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
 		0F345D1912EFEA4C00F7181F /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
@@ -69,13 +69,13 @@
 		0F345D3012EFEA4C00F7181F /* OAToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAToken.h; sourceTree = "<group>"; };
 		0F345D3112EFEA4C00F7181F /* OAToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAToken.m; sourceTree = "<group>"; };
 		0F345D3412EFEA4C00F7181F /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
-		0F345EBC12F0207800F7181F /* TweetPosterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetPosterViewController.h; sourceTree = "<group>"; };
-		0F345EBD12F0207800F7181F /* TweetPosterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetPosterViewController.m; sourceTree = "<group>"; };
-		0F94ECA512F03E5A00CC4199 /* TweetPosterAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetPosterAuthViewController.h; sourceTree = "<group>"; };
-		0F94ECA612F03E5A00CC4199 /* TweetPosterAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetPosterAuthViewController.m; sourceTree = "<group>"; };
-		0F94ECB612F041F200CC4199 /* TweetPosterOAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetPosterOAuth.h; sourceTree = "<group>"; };
-		0F94ECB712F041F200CC4199 /* TweetPosterOAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetPosterOAuth.m; sourceTree = "<group>"; };
-		0FDEE87112F035F4009BD0F7 /* TwitterBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TwitterBG.png; path = Resouces/TwitterBG.png; sourceTree = "<group>"; };
+		0F345EBC12F0207800F7181F /* TweetPosterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TweetPosterViewController.h; path = TweetPoster/TweetPosterViewController.h; sourceTree = "<group>"; };
+		0F345EBD12F0207800F7181F /* TweetPosterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TweetPosterViewController.m; path = TweetPoster/TweetPosterViewController.m; sourceTree = "<group>"; };
+		0F94ECA512F03E5A00CC4199 /* TweetPosterAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TweetPosterAuthViewController.h; path = TweetPoster/TweetPosterAuthViewController.h; sourceTree = "<group>"; };
+		0F94ECA612F03E5A00CC4199 /* TweetPosterAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TweetPosterAuthViewController.m; path = TweetPoster/TweetPosterAuthViewController.m; sourceTree = "<group>"; };
+		0F94ECB612F041F200CC4199 /* TweetPosterOAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TweetPosterOAuth.h; path = TweetPoster/TweetPosterOAuth.h; sourceTree = "<group>"; };
+		0F94ECB712F041F200CC4199 /* TweetPosterOAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TweetPosterOAuth.m; path = TweetPoster/TweetPosterOAuth.m; sourceTree = "<group>"; };
+		0FDEE87112F035F4009BD0F7 /* TwitterBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TwitterBG.png; path = TweetPoster/TwitterBG.png; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* TestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* TestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAppDelegate.m; sourceTree = "<group>"; };
@@ -110,14 +110,23 @@
 				1D3623250D0F684500981E51 /* TestAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* TestViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* TestViewController.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		0F3234AD12F164220057C467 /* TweetPoster */ = {
+			isa = PBXGroup;
+			children = (
 				0F94ECA512F03E5A00CC4199 /* TweetPosterAuthViewController.h */,
 				0F94ECA612F03E5A00CC4199 /* TweetPosterAuthViewController.m */,
 				0F94ECB612F041F200CC4199 /* TweetPosterOAuth.h */,
 				0F94ECB712F041F200CC4199 /* TweetPosterOAuth.m */,
 				0F345EBC12F0207800F7181F /* TweetPosterViewController.h */,
 				0F345EBD12F0207800F7181F /* TweetPosterViewController.m */,
+				0F1AFBE012F0FFB50062F36E /* TweetPosterAuthViewController.xib */,
+				0F1AFBE112F0FFB50062F36E /* TweetPosterViewController.xib */,
 			);
-			path = Classes;
+			name = TweetPoster;
 			sourceTree = "<group>";
 		};
 		0F345D1612EFEA4C00F7181F /* OAuthConsumer */ = {
@@ -166,6 +175,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				0F3234AD12F164220057C467 /* TweetPoster */,
 				0F345D1612EFEA4C00F7181F /* OAuthConsumer */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -192,8 +202,6 @@
 				0FDEE87112F035F4009BD0F7 /* TwitterBG.png */,
 				0F1AFBDE12F0FFB50062F36E /* MainWindow.xib */,
 				0F1AFBDF12F0FFB50062F36E /* TestViewController.xib */,
-				0F1AFBE012F0FFB50062F36E /* TweetPosterAuthViewController.xib */,
-				0F1AFBE112F0FFB50062F36E /* TweetPosterViewController.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -332,7 +340,6 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = .;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4A2CAA7C-B316-4261-8B59-5F71E382C9D2";
 				SDKROOT = iphoneos;
