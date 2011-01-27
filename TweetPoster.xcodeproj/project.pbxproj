@@ -10,7 +10,7 @@
 		0F1AFBE212F0FFB50062F36E /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F1AFBDE12F0FFB50062F36E /* MainWindow.xib */; };
 		0F1AFBE312F0FFB50062F36E /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F1AFBDF12F0FFB50062F36E /* TestViewController.xib */; };
 		0F1AFBE412F0FFB50062F36E /* TweetPosterAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F1AFBE012F0FFB50062F36E /* TweetPosterAuthViewController.xib */; };
-		0F1AFBE512F0FFB50062F36E /* TweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F1AFBE112F0FFB50062F36E /* TweetViewController.xib */; };
+		0F1AFBE512F0FFB50062F36E /* TweetPosterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F1AFBE112F0FFB50062F36E /* TweetPosterViewController.xib */; };
 		0F345D3612EFEA4C00F7181F /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 0F345D1712EFEA4C00F7181F /* Base64Transcoder.c */; };
 		0F345D3712EFEA4C00F7181F /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F345D1A12EFEA4C00F7181F /* NSMutableURLRequest+Parameters.m */; };
 		0F345D3812EFEA4C00F7181F /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F345D1C12EFEA4C00F7181F /* NSString+URLEncoding.m */; };
@@ -40,7 +40,7 @@
 		0F1AFBDE12F0FFB50062F36E /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resouces/MainWindow.xib; sourceTree = "<group>"; };
 		0F1AFBDF12F0FFB50062F36E /* TestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TestViewController.xib; path = Resouces/TestViewController.xib; sourceTree = "<group>"; };
 		0F1AFBE012F0FFB50062F36E /* TweetPosterAuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TweetPosterAuthViewController.xib; path = Resouces/TweetPosterAuthViewController.xib; sourceTree = "<group>"; };
-		0F1AFBE112F0FFB50062F36E /* TweetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TweetViewController.xib; path = Resouces/TweetViewController.xib; sourceTree = "<group>"; };
+		0F1AFBE112F0FFB50062F36E /* TweetPosterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TweetPosterViewController.xib; path = Resouces/TweetPosterViewController.xib; sourceTree = "<group>"; };
 		0F345D1712EFEA4C00F7181F /* Base64Transcoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Base64Transcoder.c; sourceTree = "<group>"; };
 		0F345D1812EFEA4C00F7181F /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
 		0F345D1912EFEA4C00F7181F /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
@@ -110,12 +110,12 @@
 				1D3623250D0F684500981E51 /* TestAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* TestViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* TestViewController.m */,
-				0F345EBC12F0207800F7181F /* TweetPosterViewController.h */,
-				0F345EBD12F0207800F7181F /* TweetPosterViewController.m */,
 				0F94ECA512F03E5A00CC4199 /* TweetPosterAuthViewController.h */,
 				0F94ECA612F03E5A00CC4199 /* TweetPosterAuthViewController.m */,
 				0F94ECB612F041F200CC4199 /* TweetPosterOAuth.h */,
 				0F94ECB712F041F200CC4199 /* TweetPosterOAuth.m */,
+				0F345EBC12F0207800F7181F /* TweetPosterViewController.h */,
+				0F345EBD12F0207800F7181F /* TweetPosterViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -193,7 +193,7 @@
 				0F1AFBDE12F0FFB50062F36E /* MainWindow.xib */,
 				0F1AFBDF12F0FFB50062F36E /* TestViewController.xib */,
 				0F1AFBE012F0FFB50062F36E /* TweetPosterAuthViewController.xib */,
-				0F1AFBE112F0FFB50062F36E /* TweetViewController.xib */,
+				0F1AFBE112F0FFB50062F36E /* TweetPosterViewController.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -261,7 +261,7 @@
 				0F1AFBE212F0FFB50062F36E /* MainWindow.xib in Resources */,
 				0F1AFBE312F0FFB50062F36E /* TestViewController.xib in Resources */,
 				0F1AFBE412F0FFB50062F36E /* TweetPosterAuthViewController.xib in Resources */,
-				0F1AFBE512F0FFB50062F36E /* TweetViewController.xib in Resources */,
+				0F1AFBE512F0FFB50062F36E /* TweetPosterViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
