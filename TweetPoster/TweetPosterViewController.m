@@ -8,17 +8,19 @@
 #import "TweetPosterAuthViewController.h"
 
 @interface TweetPosterViewController ()
-- (void)setLoginState:(BOOL)flag;
 - (void)verifyAccount;
 @end
 
 @implementation TweetPosterViewController
 
 @synthesize fetcher = fetcher_;
+@synthesize authViewController = authViewController_;
+
+@synthesize postButton;
+@synthesize tweetGroupView;
 @synthesize textView;
 @synthesize textCount;
-@synthesize postButton;
-@synthesize loginButton;
+@synthesize nameLabel;
 @synthesize statusLabel;
 @synthesize activityView;
 
@@ -48,28 +50,22 @@
     [self textViewDidChange:self.textView];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    // アクセストークンの有無によりログイン状態を判別する。
-    [self setLoginState:([TweetPosterOAuth sharedInstance].accessToken != nil)];
-    // キーボードを出す。
-    [self.textView becomeFirstResponder];
+- (void)viewDidAppear:(BOOL)animated {
+    if ([TweetPosterOAuth sharedInstance].accessToken != nil) {
+        // アクセストークンがある：内容を確認する。
+        [self verifyAccount];
+    } else if (self.authViewController == nil) {
+        // アクセストークンが無い＆まだ認証画面を出していない：認証画面へと移行。
+        self.authViewController = [[[TweetPosterAuthViewController alloc] init] autorelease];
+        self.authViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentModalViewController:self.authViewController animated:YES];
+    } else {
+        // ここに来るのは認証がキャンセルされた場合：続いてこの画面もキャンセル。
+        [self cancel];
+    }
 }
 
 #pragma mark Private
-
-- (void)setLoginState:(BOOL)flag {
-    if (flag) {
-        // ログインしているっぽい：アカウントの確認へ移行。
-        [self verifyAccount];
-    } else {
-        // ログインしていない：UIをログアウト状態に変更。
-        [self.loginButton setTitle:@"Login" forState:UIControlStateNormal];
-        self.statusLabel.text = nil;
-        self.postButton.enabled = NO;
-        self.loginButton.enabled = YES;
-        self.activityView.hidden = YES;
-    }
-}
 
 - (void)verifyAccount {
     // アカウント（アクセストークン）の確認を非同期に発行する。
@@ -85,68 +81,71 @@
                                                            didFinishSelector:@selector(didFinishVerifyAccount:data:)
                                                              didFailSelector:@selector(didFailVerifyAccount:error:)];
     [self.fetcher start];
-    // UIを接続中状態に変更。
-    self.statusLabel.text = @"Connecting...";
-    self.loginButton.enabled = NO;
-    self.activityView.hidden = NO;
 }
 
 #pragma mark OAuth Callback
 
 - (void)didFinishVerifyAccount:(OAServiceTicket*)ticket data:(NSData*)data {
-    // フェッチャーはこの時点で不要になる。
-    self.fetcher = nil;
-    // データから名前部分を抽出。
+    self.fetcher = nil; // release
+   // データから名前部分を抽出。
     NSString *string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     NSUInteger begin = NSMaxRange([string rangeOfString:@"<screen_name>"]);
     NSUInteger end = [string rangeOfString:@"</screen_name>"].location;
     if (begin != NSNotFound && end != NSNotFound) {
         NSString *name = [string substringWithRange:NSMakeRange(begin, end - begin)];
-        // UIをログイン状態に変更。
-        [self.loginButton setTitle:@"Logout" forState:UIControlStateNormal];
-      	self.statusLabel.text = [@"@" stringByAppendingString:name];
-        self.postButton.enabled = YES;
-        self.loginButton.enabled = YES;
-        self.activityView.hidden = YES;
-    } else {
-        // 名前取得失敗：静かにログアウト状態へ移行する。
-        [self setLoginState:NO];
+        self.nameLabel.text = [@"@" stringByAppendingString:name];
     }
+    // UIを入力用画面に遷移させる。
+    self.statusLabel.text = nil;
+    self.postButton.enabled = YES;
+    self.activityView.hidden = YES;
+    self.tweetGroupView.hidden = NO;
+    [UIView animateWithDuration:0.5 animations:^{ self.tweetGroupView.alpha = 1.0f; }];
+    [self.textView becomeFirstResponder];
 }
 
 - (void)didFailVerifyAccount:(OAServiceTicket*)ticket error:(NSError*)error {
-    // キャンセル挙動中でなければ、静かにログアウト状態へ移行する。
+    self.fetcher = nil; // release
+    // キャンセル挙動中でなければエラーの表示を行う。
     if (!cancelled_) {
         NSLog(@"didFailVerifyAccount - %@", error);
-        [self setLoginState:NO];
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Network Error"
+                                                         message:@"A network error occurred while communicating with the server."
+                                                        delegate:self
+                                               cancelButtonTitle:@"Back"
+                                               otherButtonTitles:nil] autorelease];
+        [alert show];
     }
-    self.fetcher = nil;
 }
 
 - (void)didFinishPostTweet:(OAServiceTicket*)ticket data:(NSData*)data {
-    // フェッチャーはこの時点で不要になる。
-    self.fetcher = nil;
-    // UIをツイート完了状態に変更。
-    self.statusLabel.text = @"Done!";
-    self.activityView.hidden = YES;
-    // １．５秒後にクローズ（キャンセルで代用）。
-    [NSTimer scheduledTimerWithTimeInterval:1.5f target:self selector:@selector(cancel) userInfo:nil repeats:NO];
+    self.fetcher = nil; // release
+    // 完了の旨をUIに表示する。
+	self.statusLabel.text = @"Done!";
+	self.activityView.hidden = YES;
+    // ２秒後にクローズ（キャンセルで代用）。
+    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(cancel) userInfo:nil repeats:NO];
 }
 
 - (void)didFailPostTweet:(OAServiceTicket*)ticket error:(NSError*)error {
+    self.fetcher = nil; // release
     // キャンセル挙動中でなければエラーの表示を行う。
     if (!cancelled_) {
         NSLog(@"didFailPostTweet - %@", error);
         UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Network Error"
                                                          message:@"A network error occurred while communicating with the server."
-                                                        delegate:nil
+                                                        delegate:self
                                                cancelButtonTitle:@"Ok"
                                                otherButtonTitles:nil] autorelease];
         [alert show];
-        // ログアウト状態へ移行する。
-        [self setLoginState:NO];
     }
-    self.fetcher = nil;
+}
+
+#pragma mark UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    // そのままキャンセル挙動に繋ぐ。
+    [self cancel];
 }
 
 #pragma mark IBAction
@@ -169,29 +168,18 @@
                                                            didFinishSelector:@selector(didFinishPostTweet:data:)
                                                              didFailSelector:@selector(didFailPostTweet:error:)];
     [self.fetcher start];
-    // UIをポスト中状態に変更。
-    self.statusLabel.text = @"Sending...";
-    self.loginButton.enabled = NO;
+    // UIをポスト中表示に遷移させる。
+    [self.textView resignFirstResponder];
+    self.statusLabel.text = @"Posting...";
     self.activityView.hidden = NO;
     self.postButton.enabled = NO;
+    self.textView.editable = NO;
+    [UIView animateWithDuration:0.5 animations:^{ self.tweetGroupView.alpha = 0.0f; }];
 }
 
 - (IBAction)cancel {
     cancelled_ = YES;
 	[self dismissModalViewControllerAnimated:YES];
-}
-
-- (IBAction)switchLoginState {
-    if ([TweetPosterOAuth sharedInstance].accessToken) {
-        // アクセストークンが有る：ログアウト。
-        [TweetPosterOAuth sharedInstance].accessToken = nil;
-        [self setLoginState:NO];
-    } else {
-        // アクセストークンが無い：認証画面へ移行。
-        TweetPosterAuthViewController *authViewController = [[[TweetPosterAuthViewController alloc] init] autorelease];
-        authViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self presentModalViewController:authViewController animated:YES];
-    }
 }
 
 - (void)textViewDidChange:(UITextView *)textView {

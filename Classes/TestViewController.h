@@ -8,6 +8,7 @@
 @property (nonatomic, retain) TweetPosterViewController *tweetViewController;
 
 - (IBAction)tweet;
+- (IBAction)signOut;
 
 @end
 

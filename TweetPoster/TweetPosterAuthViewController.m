@@ -40,8 +40,7 @@
 #pragma mark OAuth Callback
 
 - (void)didReceiveRequestToken:(OAServiceTicket*)ticket data:(NSData*)data {
-    // フェッチャーはこの時点で不要になる。
-    self.fetcher = nil;
+    self.fetcher = nil; // release
     // リクエストトークンの取得結果を回収。
     NSString *httpBody = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     OAToken *token = [[[OAToken alloc] initWithHTTPResponseBody:httpBody] autorelease];
@@ -51,17 +50,17 @@
 }
 
 - (void)didReceiveAccessToken:(OAServiceTicket*)ticket data:(NSData*)data {
-    // フェッチャーはこの時点で不要になる。
-    self.fetcher = nil;
+    self.fetcher = nil; // release
     // アクセストークン取得結果の回収。
     NSString* httpBody = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     OAToken *accessToken = [[[OAToken alloc] initWithHTTPResponseBody:httpBody] autorelease];
     [TweetPosterOAuth sharedInstance].accessToken = accessToken;
-    // １．５秒後にクローズ（キャンセルで代用）。
-    [NSTimer scheduledTimerWithTimeInterval:1.5f target:self selector:@selector(cancel) userInfo:nil repeats:NO];
+    // 2.5秒後にクローズ（キャンセルで代用）。
+    [NSTimer scheduledTimerWithTimeInterval:2.5f target:self selector:@selector(cancel) userInfo:nil repeats:NO];
 }
 
 - (void)didFailOAuth:(OAServiceTicket*)ticket error:(NSError*)error {
+    self.fetcher = nil; // release
     // キャンセル挙動中でなければエラーの表示を行う。
     if (!cancelled_) {
         NSLog(@"didFailOAuth - %@", error);
@@ -72,7 +71,6 @@
                                                otherButtonTitles:nil] autorelease];
         [alert show];
     }
-    self.fetcher = nil;
 }
 
 #pragma mark UIWebViewDelegate

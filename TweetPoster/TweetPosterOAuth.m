@@ -31,6 +31,7 @@ static TweetPosterOAuth *s_sharedInstance;
         [defaults removeObjectForKey:kAccessKeyStore];
         [defaults removeObjectForKey:kAccessSecretStore];
     }
+    [defaults synchronize];
 }
 
 #pragma mark Constructor / Destructor
