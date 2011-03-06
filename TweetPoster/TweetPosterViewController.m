@@ -27,7 +27,7 @@
 #pragma mark UIView
 
 - (id)initWithPostText:(NSString *)postText {
-    if (self = [super initWithNibName:@"TweetPosterViewController" bundle:nil]) {
+    if ((self = [super initWithNibName:@"TweetPosterViewController" bundle:nil])) {
         cancelled_ = NO;
 	    initialPostText_ = [postText copy];
     }
