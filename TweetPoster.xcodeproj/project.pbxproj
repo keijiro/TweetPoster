@@ -123,6 +123,7 @@
 		0F3234AD12F164220057C467 /* TweetPoster */ = {
 			isa = PBXGroup;
 			children = (
+				0FDEE87112F035F4009BD0F7 /* TwitterBG.png */,
 				0F94ECA512F03E5A00CC4199 /* TweetPosterAuthViewController.h */,
 				0F94ECA612F03E5A00CC4199 /* TweetPosterAuthViewController.m */,
 				0F1AFBE012F0FFB50062F36E /* TweetPosterAuthViewController.xib */,
@@ -208,7 +209,6 @@
 				0FB4DC381325DAF400402C5E /* Icon.png */,
 				0FB4DC391325DAF400402C5E /* Icon@2x.png */,
 				8D1107310486CEB800E47090 /* TweetPoster-Info.plist */,
-				0FDEE87112F035F4009BD0F7 /* TwitterBG.png */,
 				0F1AFBDE12F0FFB50062F36E /* MainWindow.xib */,
 				0F1AFBDF12F0FFB50062F36E /* TestViewController.xib */,
 			);
@@ -370,6 +370,7 @@
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D956839D-C58C-48B8-BE17-BA7D363CDEB7";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
