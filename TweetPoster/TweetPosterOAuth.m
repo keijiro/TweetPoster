@@ -1,8 +1,8 @@
 #import "TweetPosterOAuth.h"
 
 // Twitter App 登録情報
-static NSString* kConsumerKey = @"xxxxxxxxxxxxxxxxxxxx";
-static NSString* kConsumerSecret = @"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+static NSString* kConsumerKey = @"TqaWmqgwBdGQXiAlgEGqMg";
+static NSString* kConsumerSecret = @"wLRgb1nncMNzMCXpyqXbvxtKaAiT4nIv9deNyEWQnQ";
 
 // Keys for defaults system.
 static NSString* kAccessKeyStore = @"TwitterAccessKey";

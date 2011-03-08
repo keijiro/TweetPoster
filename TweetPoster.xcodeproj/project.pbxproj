@@ -27,6 +27,9 @@
 		0F345EBF12F0207800F7181F /* TweetPosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F345EBD12F0207800F7181F /* TweetPosterViewController.m */; };
 		0F94ECA812F03E5A00CC4199 /* TweetPosterAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F94ECA612F03E5A00CC4199 /* TweetPosterAuthViewController.m */; };
 		0F94ECB812F041F200CC4199 /* TweetPosterOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F94ECB712F041F200CC4199 /* TweetPosterOAuth.m */; };
+		0FB4DC3A1325DAF400402C5E /* Icon-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB4DC371325DAF400402C5E /* Icon-iPad.png */; };
+		0FB4DC3B1325DAF400402C5E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB4DC381325DAF400402C5E /* Icon.png */; };
+		0FB4DC3C1325DAF400402C5E /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB4DC391325DAF400402C5E /* Icon@2x.png */; };
 		0FDEE87212F035F4009BD0F7 /* TwitterBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FDEE87112F035F4009BD0F7 /* TwitterBG.png */; };
 		1D3623260D0F684500981E51 /* TestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TestAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -75,6 +78,9 @@
 		0F94ECA612F03E5A00CC4199 /* TweetPosterAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TweetPosterAuthViewController.m; path = TweetPoster/TweetPosterAuthViewController.m; sourceTree = "<group>"; };
 		0F94ECB612F041F200CC4199 /* TweetPosterOAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TweetPosterOAuth.h; path = TweetPoster/TweetPosterOAuth.h; sourceTree = "<group>"; };
 		0F94ECB712F041F200CC4199 /* TweetPosterOAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TweetPosterOAuth.m; path = TweetPoster/TweetPosterOAuth.m; sourceTree = "<group>"; };
+		0FB4DC371325DAF400402C5E /* Icon-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-iPad.png"; path = "Resources/Icon-iPad.png"; sourceTree = "<group>"; };
+		0FB4DC381325DAF400402C5E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
+		0FB4DC391325DAF400402C5E /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Resources/Icon@2x.png"; sourceTree = "<group>"; };
 		0FDEE87112F035F4009BD0F7 /* TwitterBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TwitterBG.png; path = TweetPoster/TwitterBG.png; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* TestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestAppDelegate.h; sourceTree = "<group>"; };
@@ -198,6 +204,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0FB4DC371325DAF400402C5E /* Icon-iPad.png */,
+				0FB4DC381325DAF400402C5E /* Icon.png */,
+				0FB4DC391325DAF400402C5E /* Icon@2x.png */,
 				8D1107310486CEB800E47090 /* TweetPoster-Info.plist */,
 				0FDEE87112F035F4009BD0F7 /* TwitterBG.png */,
 				0F1AFBDE12F0FFB50062F36E /* MainWindow.xib */,
@@ -270,6 +279,9 @@
 				0F1AFBE312F0FFB50062F36E /* TestViewController.xib in Resources */,
 				0F1AFBE412F0FFB50062F36E /* TweetPosterAuthViewController.xib in Resources */,
 				0F1AFBE512F0FFB50062F36E /* TweetPosterViewController.xib in Resources */,
+				0FB4DC3A1325DAF400402C5E /* Icon-iPad.png in Resources */,
+				0FB4DC3B1325DAF400402C5E /* Icon.png in Resources */,
+				0FB4DC3C1325DAF400402C5E /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,14 +1,13 @@
 #import <UIKit/UIKit.h>
-#import "TweetPosterViewController.h"
 
 @interface TestViewController : UIViewController {
-    TweetPosterViewController *tweetViewController_;
 }
 
-@property (nonatomic, retain) TweetPosterViewController *tweetViewController;
+@property (nonatomic, retain) IBOutlet UIButton *signButton;
 
+- (void)updateSignButton;
 - (IBAction)tweet;
-- (IBAction)signOut;
+- (IBAction)signInOrOut;
 
 @end
 
