@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F086B91132715B800BF6775 /* TPAsynchronousDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F086B90132715B800BF6775 /* TPAsynchronousDataFetcher.m */; };
 		0F1AFBE212F0FFB50062F36E /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F1AFBDE12F0FFB50062F36E /* MainWindow.xib */; };
 		0F1AFBE312F0FFB50062F36E /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F1AFBDF12F0FFB50062F36E /* TestViewController.xib */; };
-		0F1AFBE412F0FFB50062F36E /* TweetPosterAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F1AFBE012F0FFB50062F36E /* TweetPosterAuthViewController.xib */; };
-		0F1AFBE512F0FFB50062F36E /* TweetPosterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F1AFBE112F0FFB50062F36E /* TweetPosterViewController.xib */; };
+		0F1AFBE412F0FFB50062F36E /* TPAuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F1AFBE012F0FFB50062F36E /* TPAuthenticationViewController.xib */; };
+		0F1AFBE512F0FFB50062F36E /* TPTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F1AFBE112F0FFB50062F36E /* TPTweetViewController.xib */; };
 		0F345D3612EFEA4C00F7181F /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 0F345D1712EFEA4C00F7181F /* Base64Transcoder.c */; };
 		0F345D3712EFEA4C00F7181F /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F345D1A12EFEA4C00F7181F /* NSMutableURLRequest+Parameters.m */; };
 		0F345D3812EFEA4C00F7181F /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F345D1C12EFEA4C00F7181F /* NSString+URLEncoding.m */; };
@@ -24,9 +25,9 @@
 		0F345D4012EFEA4C00F7181F /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F345D2C12EFEA4C00F7181F /* OARequestParameter.m */; };
 		0F345D4112EFEA4C00F7181F /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F345D2E12EFEA4C00F7181F /* OAServiceTicket.m */; };
 		0F345D4212EFEA4C00F7181F /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F345D3112EFEA4C00F7181F /* OAToken.m */; };
-		0F345EBF12F0207800F7181F /* TweetPosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F345EBD12F0207800F7181F /* TweetPosterViewController.m */; };
-		0F94ECA812F03E5A00CC4199 /* TweetPosterAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F94ECA612F03E5A00CC4199 /* TweetPosterAuthViewController.m */; };
-		0F94ECB812F041F200CC4199 /* TweetPosterOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F94ECB712F041F200CC4199 /* TweetPosterOAuth.m */; };
+		0F345EBF12F0207800F7181F /* TPTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F345EBD12F0207800F7181F /* TPTweetViewController.m */; };
+		0F94ECA812F03E5A00CC4199 /* TPAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F94ECA612F03E5A00CC4199 /* TPAuthenticationViewController.m */; };
+		0F94ECB812F041F200CC4199 /* TPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F94ECB712F041F200CC4199 /* TPSession.m */; };
 		0FB4DC3A1325DAF400402C5E /* Icon-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB4DC371325DAF400402C5E /* Icon-iPad.png */; };
 		0FB4DC3B1325DAF400402C5E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB4DC381325DAF400402C5E /* Icon.png */; };
 		0FB4DC3C1325DAF400402C5E /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB4DC391325DAF400402C5E /* Icon@2x.png */; };
@@ -40,10 +41,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F086B8F132715B800BF6775 /* TPAsynchronousDataFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPAsynchronousDataFetcher.h; path = TweetPoster/TPAsynchronousDataFetcher.h; sourceTree = "<group>"; };
+		0F086B90132715B800BF6775 /* TPAsynchronousDataFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPAsynchronousDataFetcher.m; path = TweetPoster/TPAsynchronousDataFetcher.m; sourceTree = "<group>"; };
 		0F1AFBDE12F0FFB50062F36E /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		0F1AFBDF12F0FFB50062F36E /* TestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TestViewController.xib; path = Classes/TestViewController.xib; sourceTree = "<group>"; };
-		0F1AFBE012F0FFB50062F36E /* TweetPosterAuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TweetPosterAuthViewController.xib; path = TweetPoster/TweetPosterAuthViewController.xib; sourceTree = "<group>"; };
-		0F1AFBE112F0FFB50062F36E /* TweetPosterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TweetPosterViewController.xib; path = TweetPoster/TweetPosterViewController.xib; sourceTree = "<group>"; };
+		0F1AFBE012F0FFB50062F36E /* TPAuthenticationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TPAuthenticationViewController.xib; path = TweetPoster/TPAuthenticationViewController.xib; sourceTree = "<group>"; };
+		0F1AFBE112F0FFB50062F36E /* TPTweetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TPTweetViewController.xib; path = TweetPoster/TPTweetViewController.xib; sourceTree = "<group>"; };
 		0F345D1712EFEA4C00F7181F /* Base64Transcoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Base64Transcoder.c; sourceTree = "<group>"; };
 		0F345D1812EFEA4C00F7181F /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
 		0F345D1912EFEA4C00F7181F /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
@@ -72,12 +75,12 @@
 		0F345D3012EFEA4C00F7181F /* OAToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAToken.h; sourceTree = "<group>"; };
 		0F345D3112EFEA4C00F7181F /* OAToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAToken.m; sourceTree = "<group>"; };
 		0F345D3412EFEA4C00F7181F /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
-		0F345EBC12F0207800F7181F /* TweetPosterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TweetPosterViewController.h; path = TweetPoster/TweetPosterViewController.h; sourceTree = "<group>"; };
-		0F345EBD12F0207800F7181F /* TweetPosterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TweetPosterViewController.m; path = TweetPoster/TweetPosterViewController.m; sourceTree = "<group>"; };
-		0F94ECA512F03E5A00CC4199 /* TweetPosterAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TweetPosterAuthViewController.h; path = TweetPoster/TweetPosterAuthViewController.h; sourceTree = "<group>"; };
-		0F94ECA612F03E5A00CC4199 /* TweetPosterAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TweetPosterAuthViewController.m; path = TweetPoster/TweetPosterAuthViewController.m; sourceTree = "<group>"; };
-		0F94ECB612F041F200CC4199 /* TweetPosterOAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TweetPosterOAuth.h; path = TweetPoster/TweetPosterOAuth.h; sourceTree = "<group>"; };
-		0F94ECB712F041F200CC4199 /* TweetPosterOAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TweetPosterOAuth.m; path = TweetPoster/TweetPosterOAuth.m; sourceTree = "<group>"; };
+		0F345EBC12F0207800F7181F /* TPTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPTweetViewController.h; path = TweetPoster/TPTweetViewController.h; sourceTree = "<group>"; };
+		0F345EBD12F0207800F7181F /* TPTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPTweetViewController.m; path = TweetPoster/TPTweetViewController.m; sourceTree = "<group>"; };
+		0F94ECA512F03E5A00CC4199 /* TPAuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPAuthenticationViewController.h; path = TweetPoster/TPAuthenticationViewController.h; sourceTree = "<group>"; };
+		0F94ECA612F03E5A00CC4199 /* TPAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPAuthenticationViewController.m; path = TweetPoster/TPAuthenticationViewController.m; sourceTree = "<group>"; };
+		0F94ECB612F041F200CC4199 /* TPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPSession.h; path = TweetPoster/TPSession.h; sourceTree = "<group>"; };
+		0F94ECB712F041F200CC4199 /* TPSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPSession.m; path = TweetPoster/TPSession.m; sourceTree = "<group>"; };
 		0FB4DC371325DAF400402C5E /* Icon-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-iPad.png"; path = "Resources/Icon-iPad.png"; sourceTree = "<group>"; };
 		0FB4DC381325DAF400402C5E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
 		0FB4DC391325DAF400402C5E /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Resources/Icon@2x.png"; sourceTree = "<group>"; };
@@ -123,15 +126,17 @@
 		0F3234AD12F164220057C467 /* TweetPoster */ = {
 			isa = PBXGroup;
 			children = (
+				0F94ECA512F03E5A00CC4199 /* TPAuthenticationViewController.h */,
+				0F94ECA612F03E5A00CC4199 /* TPAuthenticationViewController.m */,
+				0F1AFBE012F0FFB50062F36E /* TPAuthenticationViewController.xib */,
+				0F086B8F132715B800BF6775 /* TPAsynchronousDataFetcher.h */,
+				0F086B90132715B800BF6775 /* TPAsynchronousDataFetcher.m */,
+				0F94ECB612F041F200CC4199 /* TPSession.h */,
+				0F94ECB712F041F200CC4199 /* TPSession.m */,
+				0F345EBC12F0207800F7181F /* TPTweetViewController.h */,
+				0F345EBD12F0207800F7181F /* TPTweetViewController.m */,
+				0F1AFBE112F0FFB50062F36E /* TPTweetViewController.xib */,
 				0FDEE87112F035F4009BD0F7 /* TwitterBG.png */,
-				0F94ECA512F03E5A00CC4199 /* TweetPosterAuthViewController.h */,
-				0F94ECA612F03E5A00CC4199 /* TweetPosterAuthViewController.m */,
-				0F1AFBE012F0FFB50062F36E /* TweetPosterAuthViewController.xib */,
-				0F94ECB612F041F200CC4199 /* TweetPosterOAuth.h */,
-				0F94ECB712F041F200CC4199 /* TweetPosterOAuth.m */,
-				0F345EBC12F0207800F7181F /* TweetPosterViewController.h */,
-				0F345EBD12F0207800F7181F /* TweetPosterViewController.m */,
-				0F1AFBE112F0FFB50062F36E /* TweetPosterViewController.xib */,
 			);
 			name = TweetPoster;
 			sourceTree = "<group>";
@@ -277,8 +282,8 @@
 				0FDEE87212F035F4009BD0F7 /* TwitterBG.png in Resources */,
 				0F1AFBE212F0FFB50062F36E /* MainWindow.xib in Resources */,
 				0F1AFBE312F0FFB50062F36E /* TestViewController.xib in Resources */,
-				0F1AFBE412F0FFB50062F36E /* TweetPosterAuthViewController.xib in Resources */,
-				0F1AFBE512F0FFB50062F36E /* TweetPosterViewController.xib in Resources */,
+				0F1AFBE412F0FFB50062F36E /* TPAuthenticationViewController.xib in Resources */,
+				0F1AFBE512F0FFB50062F36E /* TPTweetViewController.xib in Resources */,
 				0FB4DC3A1325DAF400402C5E /* Icon-iPad.png in Resources */,
 				0FB4DC3B1325DAF400402C5E /* Icon.png in Resources */,
 				0FB4DC3C1325DAF400402C5E /* Icon@2x.png in Resources */,
@@ -308,9 +313,10 @@
 				0F345D4012EFEA4C00F7181F /* OARequestParameter.m in Sources */,
 				0F345D4112EFEA4C00F7181F /* OAServiceTicket.m in Sources */,
 				0F345D4212EFEA4C00F7181F /* OAToken.m in Sources */,
-				0F345EBF12F0207800F7181F /* TweetPosterViewController.m in Sources */,
-				0F94ECA812F03E5A00CC4199 /* TweetPosterAuthViewController.m in Sources */,
-				0F94ECB812F041F200CC4199 /* TweetPosterOAuth.m in Sources */,
+				0F345EBF12F0207800F7181F /* TPTweetViewController.m in Sources */,
+				0F94ECA812F03E5A00CC4199 /* TPAuthenticationViewController.m in Sources */,
+				0F94ECB812F041F200CC4199 /* TPSession.m in Sources */,
+				0F086B91132715B800BF6775 /* TPAsynchronousDataFetcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,13 +354,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Keijiro Takahashi (TTU92888H4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4A2CAA7C-B316-4261-8B59-5F71E382C9D2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};

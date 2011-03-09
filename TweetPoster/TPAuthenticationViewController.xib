@@ -230,7 +230,7 @@
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>TweetPosterAuthViewController</string>
+					<string>TPAuthenticationViewController</string>
 					<string>UIResponder</string>
 					<string>{{446, 103}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -266,7 +266,7 @@
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
-					<string key="className">TweetPosterAuthViewController</string>
+					<string key="className">TPAuthenticationViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<object class="NSMutableDictionary" key="actions">
 						<string key="NS.key.0">cancel</string>
@@ -313,7 +313,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">TweetPoster/TweetPosterAuthViewController.h</string>
+						<string key="minorKey">TweetPoster/TPAuthenticationViewController.h</string>
 					</object>
 				</object>
 			</object>
