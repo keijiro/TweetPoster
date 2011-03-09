@@ -10,15 +10,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
     [self updateSignInStatus];
+    // アクセストークンの
+    [[TPSession sharedInstance] addObserver:self
+                                 forKeyPath:@"accessToken"
+                                    options:0
+                                    context:nil];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+    if ([keyPath isEqual:@"accessToken"]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self updateSignInStatus];
+        });
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -43,7 +53,6 @@
     if ([TPSession sharedInstance].signedIn) {
         // サインアウト。
         [[TPSession sharedInstance] signOut];
-        [self updateSignInStatus];
         // ダイアログでお知らせ。
         UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Done"
                                                          message:@"Successfully signed out."
@@ -60,17 +69,17 @@
 
 // サインイン状態の更新。
 - (void)updateSignInStatus {
-    if ([TPSession sharedInstance].signedIn) {
-        self.signButton.title = @"Sign Out";
-        self.nameLabel.text = @"(Signed In)";
-        // 名前の取得。
-        [[TPSession sharedInstance] verifyAccount:^(NSString *userName) {
-            self.nameLabel.text = userName;
-        } failureBlock:nil];
-    } else {
-        self.signButton.title = @"Sign In";
-        self.nameLabel.text = @"(Signed Out)";
-    }
+        if ([TPSession sharedInstance].signedIn) {
+     self.signButton.title = @"Sign Out";
+     self.nameLabel.text = @"(Signed In)";
+     // 名前の取得。
+     [[TPSession sharedInstance] verifyAccount:^(NSString *userName) {
+     self.nameLabel.text = userName;
+     } failureBlock:nil];
+     } else {
+     self.signButton.title = @"Sign In";
+     self.nameLabel.text = @"(Signed Out)";
+     }
 }
 
 @end
