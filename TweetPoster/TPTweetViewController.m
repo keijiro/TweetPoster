@@ -74,7 +74,7 @@
 - (void)verifyAccount {
     [[TPSession sharedInstance] verifyAccount:^(NSString *name) {
         // UIを入力用画面に遷移させる。
-        self.nameLabel.text = name;
+        self.nameLabel.text = [@"@" stringByAppendingString:name];
         self.statusLabel.text = nil;
         self.postButton.enabled = YES;
         self.activityView.hidden = YES;

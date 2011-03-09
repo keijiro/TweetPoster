@@ -8,6 +8,10 @@ static NSString* kConsumerSecret = @"wLRgb1nncMNzMCXpyqXbvxtKaAiT4nIv9deNyEWQnQ"
 // Defaultsに保存する際に使うキー。
 static NSString* kAccessKeyStore = @"TwitterAccessKey";
 static NSString* kAccessSecretStore = @"TwitterAccessSecret";
+static NSString* kUserNameStore = @"TwitterUserName";
+
+// ユーザー名を取得するまでの間に使うダミー名。
+static NSString* kDummyUserName = @"--";
 
 // 共有インスタンス。
 static TPSession *s_sharedInstance;
@@ -28,6 +32,9 @@ static TPSession *s_sharedInstance;
     if (token) {
         [defaults setObject:token.key forKey:kAccessKeyStore];
         [defaults setObject:token.secret forKey:kAccessSecretStore];
+        // ユーザー名の取得を開始。
+        [defaults setObject:kDummyUserName forKey:kUserNameStore];
+        [self verifyAccount:nil failureBlock:nil];
     } else {
         [defaults removeObjectForKey:kAccessKeyStore];
         [defaults removeObjectForKey:kAccessSecretStore];
@@ -37,6 +44,14 @@ static TPSession *s_sharedInstance;
 
 - (BOOL)signedIn {
     return accessToken_ != nil;
+}
+
+- (NSString*)userNameCache {
+    if (accessToken_) {
+        return [[NSUserDefaults standardUserDefaults] objectForKey:kUserNameStore];
+    } else {
+        return nil;
+    }
 }
 
 #pragma mark Initialization and cleanup
@@ -79,15 +94,23 @@ static TPSession *s_sharedInstance;
     
     TPFetcherResultBlock resultBridge = ^(OAServiceTicket *ticket, NSData *data) {
         // verifyAccountの場合：データから名前部分を抽出してコールバックする。
+        NSString *name = kDummyUserName;
         NSString *string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
         NSUInteger begin = NSMaxRange([string rangeOfString:@"<screen_name>"]);
         NSUInteger end = [string rangeOfString:@"</screen_name>"].location;
         if (begin != NSNotFound && end != NSNotFound) {
-            NSString *name = [string substringWithRange:NSMakeRange(begin, end - begin)];
-            resultBlock([@"@" stringByAppendingString:name]);
+            name = [string substringWithRange:NSMakeRange(begin, end - begin)];
+            // ユーザー名のキャッシュ情報を更新する。
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:name forKey:kUserNameStore];
+            [defaults synchronize];
         }
+        if (resultBlock) resultBlock(name);
     };
-    TPFetcherFailureBlock failureBridge = ^(OAServiceTicket *ticket, NSError *error) { failureBlock(error); };
+    
+    TPFetcherFailureBlock failureBridge = ^(OAServiceTicket *ticket, NSError *error) {
+        if (failureBlock) failureBlock(error);
+    };
     
     TPAsynchronousDataFetcher *fetcher = [TPAsynchronousDataFetcher asynchronousFetcherWithRequest:request resultBlock:resultBridge failureBlock:failureBridge];
     [fetcher start];
@@ -107,8 +130,13 @@ static TPSession *s_sharedInstance;
     OARequestParameter *param = [[OARequestParameter alloc] initWithName:@"status" value:text];
     [request setParameters:[NSArray arrayWithObject:param]];
     
-    TPFetcherResultBlock resultBridge = ^(OAServiceTicket *ticket, NSData *data) { resultBlock(); };
-    TPFetcherFailureBlock failureBridge = ^(OAServiceTicket *ticket, NSError *error) { failureBlock(error); };
+    TPFetcherResultBlock resultBridge = ^(OAServiceTicket *ticket, NSData *data) {
+        if (resultBlock) resultBlock();
+    };
+    
+    TPFetcherFailureBlock failureBridge = ^(OAServiceTicket *ticket, NSError *error) {
+        if (failureBlock) failureBlock(error);
+    };
 
     TPAsynchronousDataFetcher *fetcher = [TPAsynchronousDataFetcher asynchronousFetcherWithRequest:request resultBlock:resultBridge failureBlock:failureBridge];
     [fetcher start];
