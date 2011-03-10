@@ -7,7 +7,7 @@
 + (id)asynchronousFetcherWithRequest:(OAMutableURLRequest *)aRequest
                          resultBlock:(TPFetcherResultBlock)aResultBlock
                         failureBlock:(TPFetcherFailureBlock)aFailureBlock {
-	return [[TPAsynchronousDataFetcher alloc] initWithRequest:aRequest resultBlock:aResultBlock failureBlock:aFailureBlock];
+	return [[[TPAsynchronousDataFetcher alloc] initWithRequest:aRequest resultBlock:aResultBlock failureBlock:aFailureBlock] autorelease];
 }
 
 - (id)initWithRequest:(OAMutableURLRequest *)aRequest

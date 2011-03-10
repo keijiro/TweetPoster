@@ -86,11 +86,11 @@ static TPSession *s_sharedInstance;
 - (void)verifyAccount:(void (^)(NSString *))resultBlock
          failureBlock:(void (^)(NSError *))failureBlock {
     NSURL *url = [NSURL URLWithString:@"http://api.twitter.com/1/account/verify_credentials.xml"];
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
-                                                                   consumer:consumer_
-                                                                      token:accessToken_
-                                                                      realm:nil
-                                        				  signatureProvider:nil];
+    OAMutableURLRequest *request = [[[OAMutableURLRequest alloc] initWithURL:url
+                                                                    consumer:consumer_
+                                                                       token:accessToken_
+                                                                       realm:nil
+                                        				   signatureProvider:nil] autorelease];
     
     TPFetcherResultBlock resultBridge = ^(OAServiceTicket *ticket, NSData *data) {
         // verifyAccountの場合：データから名前部分を抽出してコールバックする。
@@ -120,14 +120,14 @@ static TPSession *s_sharedInstance;
       resultBlock:(void (^)())resultBlock
      failureBlock:(void (^)(NSError *))failureBlock {
     NSURL *url = [NSURL URLWithString:@"http://api.twitter.com/1/statuses/update.xml"];
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
-                                                                   consumer:consumer_
-                                                                      token:accessToken_
-                                                                      realm:nil
-                                        				  signatureProvider:nil];
+    OAMutableURLRequest *request = [[[OAMutableURLRequest alloc] initWithURL:url
+                                                                    consumer:consumer_
+                                                                       token:accessToken_
+                                                                       realm:nil
+                                                           signatureProvider:nil] autorelease];
     [request setHTTPMethod:@"POST"];
 
-    OARequestParameter *param = [[OARequestParameter alloc] initWithName:@"status" value:text];
+    OARequestParameter *param = [[[OARequestParameter alloc] initWithName:@"status" value:text] autorelease];
     [request setParameters:[NSArray arrayWithObject:param]];
     
     TPFetcherResultBlock resultBridge = ^(OAServiceTicket *ticket, NSData *data) {
