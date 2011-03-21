@@ -26,7 +26,7 @@
 // サインオフ時にnilを返し、サインオン時には何らかの文字列を返すが、
 // その文字列の中身は少し怪しい。古いユーザー名かもしれないし、
 // あるいは取得中のダミー文字列かもしれない。
-// 確実に習得するにはverifyAccountを用いた方が良い。
+// 確実に取得するにはverifyAccountを用いた方が良い。
 @property (nonatomic, readonly) NSString *userNameCache;
 
 // サインアウト。
