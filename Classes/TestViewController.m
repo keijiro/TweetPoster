@@ -7,6 +7,7 @@
 
 @synthesize nameLabel;
 @synthesize signButton;
+@synthesize tweetButton;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -57,13 +58,21 @@
 
 // サインイン状態の更新。
 - (void)updateSignInStatus {
-    TPSession *session = [TPSession sharedInstance];
-    if (session.signedIn) {
-        self.signButton.title = @"Sign Out";
-        self.nameLabel.text = [@"Signed in as @" stringByAppendingString:session.userNameCache];
+    // iOS 4.0 バージョン確認。
+    if (NSClassFromString(@"NSBlockOperation")) {
+        TPSession *session = [TPSession sharedInstance];
+        if (session.signedIn) {
+            self.signButton.title = @"Sign Out";
+            self.nameLabel.text = [@"Signed in as @" stringByAppendingString:session.userNameCache];
+        } else {
+            self.signButton.title = @"Sign In";
+            self.nameLabel.text = @"(Signed Out)";
+        }
     } else {
-        self.signButton.title = @"Sign In";
-        self.nameLabel.text = @"(Signed Out)";
+        // 非対応デバイスでは機能を封じる。
+        self.nameLabel.text = @"(pre-4.0 iOS devices are not supported)";
+        self.signButton.enabled = NO;
+        self.tweetButton.enabled = NO;
     }
 }
 

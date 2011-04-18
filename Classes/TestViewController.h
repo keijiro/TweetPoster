@@ -5,6 +5,7 @@
 
 @property (nonatomic, retain) IBOutlet UILabel *nameLabel;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *signButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *tweetButton;
 
 - (void)updateSignInStatus;
 
